@@ -1,0 +1,36 @@
+{
+  "prepare": {
+    "operationId": "draft-example-01",
+    "headers": [
+      "id",
+      "units"
+    ],
+    "requirements": "id is a required string and primary key. units is a required integer."
+  },
+  "illustrative_proposal_not_live_model_evidence": {
+    "contract": {
+      "fields": [
+        {
+          "name": "id",
+          "type": "string",
+          "constraints": {
+            "required": true
+          }
+        },
+        {
+          "name": "units",
+          "type": "integer",
+          "constraints": {
+            "required": true
+          }
+        }
+      ],
+      "primaryKey": [
+        "id"
+      ]
+    },
+    "assumptions": [],
+    "questions": []
+  },
+  "csvText": "id,units\nx,2\n"
+}
