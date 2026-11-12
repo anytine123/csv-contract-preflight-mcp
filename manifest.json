@@ -1,0 +1,65 @@
+{
+  "manifest_version": "0.3",
+  "name": "csv-contract-preflight-mcp",
+  "display_name": "CSV Contract Preflight MCP",
+  "version": "0.1.0",
+  "description": "Local MCP adapter for automated CSV checks using the buyer's own Apify account; upstream USD0.01 per completed report.",
+  "author": {
+    "name": "CSV Contract Preflight contributors"
+  },
+  "homepage": "https://apify.com/satisfied_laptop/csv-contract-preflight",
+  "license": "MIT",
+  "server": {
+    "type": "python",
+    "entry_point": "adapter.py",
+    "mcp_config": {
+      "command": "python3",
+      "args": [
+        "-I",
+        "-B",
+        "${__dirname}/adapter.py"
+      ],
+      "env": {
+        "APIFY_TOKEN": "${user_config.apify_token}"
+      }
+    }
+  },
+  "user_config": {
+    "apify_token": {
+      "type": "string",
+      "title": "Your Apify token",
+      "description": "Your own eligible buyer account token. Required for purchases; leave empty to inspect free tool metadata. Stored by your MCP client.",
+      "sensitive": true,
+      "required": false,
+      "default": ""
+    }
+  },
+  "compatibility": {
+    "platforms": [
+      "linux"
+    ],
+    "runtimes": {
+      "python": ">=3.11"
+    }
+  },
+  "tools": [
+    {
+      "name": "start_validation",
+      "description": "Purchase one bounded CSV contract report using the buyer account."
+    },
+    {
+      "name": "get_validation",
+      "description": "Retrieve the original saved run and its verified report."
+    }
+  ],
+  "keywords": [
+    "csv",
+    "validation",
+    "autonomous-agents",
+    "apify",
+    "data-quality"
+  ],
+  "privacy_policies": [
+    "https://docs.apify.com/legal/privacy-policy"
+  ]
+}
