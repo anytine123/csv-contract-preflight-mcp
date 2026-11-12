@@ -4,13 +4,13 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "csv-contract-preflight-mcp"
-version = "0.2.0"
+version = "0.3.0"
 description = "Buyer-owned agent-assisted contract drafting and CSV validation MCP tools"
 requires-python = ">=3.11"
 dependencies = []
 
 [project.scripts]
-csv-contract-preflight-mcp = "drafting_adapter:main"
+csv-contract-preflight-mcp = "workflow_adapter:main"
 
 [tool.setuptools]
-py-modules = ["adapter", "contract_tools", "drafting_adapter"]
+py-modules = ["adapter", "contract_tools", "drafting_adapter", "workflow_tools", "workflow_adapter"]

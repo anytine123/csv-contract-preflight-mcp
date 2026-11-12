@@ -1,13 +1,27 @@
-CSV CONTRACT PREFLIGHT MCP 0.2.0 — AGENT-ASSISTED DRAFTING
+CSV CONTRACT PREFLIGHT MCP 0.3.0 — TEMPLATES AND REPORT SUMMARIES
 
 Public product: https://apify.com/satisfied_laptop/csv-contract-preflight
 Source: https://github.com/anytine123/csv-contract-preflight-mcp
 
 This local stdio MCP package helps your agent prepare a contract, validate its proposal, explicitly accept its exact content, and purchase/retrieve a CSV report from the existing Apify Actor. YOUR agent uses its own model. This server does NOT run a hosted model, request an OpenAI key, perform MCP sampling, or expose a creator-funded model backend. prepare_contract_draft returns instructions, not a generated contract. An actual proposal exists only after your agent generates and submits one.
 
+NEW LOCAL WORKFLOW TOOLS
+- list_contract_templates({}): inspect the free catalog.
+- get_contract_template({"templateId":"inventory_v1"}): obtain exact ordered headers, canonical contractJson, requirements, a proposal, limitations and synthetic pass/findings samples. The other IDs are customer_import_v1 and scraper_export_v1.
+- get_validation_summary({"operationId":"your-original-operation-id"}): retrieve the original known run if needed and explain its verified report. Never create a replacement operation for an unknown start.
+
+PRESET WORKFLOW
+Inspect every preset rule against your actual task. Presets do not infer column mappings. Keep exactly the declared column order. customer_import_v1 checks email only as a required string; it does not validate addresses. scraper_export_v1 does not verify URLs or source truth. Inventory does not check ranges or stock availability. Leading-zero string IDs remain literal.
+To use the existing accepted-draft path without a model, call prepare_contract_draft with the preset headers/requirements, submit its proposal unchanged to review_contract_draft, inspect the resulting preview, explicitly accept its digest, then use the separately confirmed purchase tool. Selecting or reviewing a preset never accepts it or authorizes payment. Existing start_validation remains available to callers who already have an authorized contract.
+
+SUMMARY WORKFLOW
+After the existing purchase/retrieval workflow, call get_validation_summary with the SAME operationId. It returns a separate versioned summary only when state is COMPLETE and the report matches the original operation hashes. Other states return summary:null. Held/failed states remain errors and must be reconciled as originally documented. This tool never starts a report or invokes a model; ordinary Apify result-retrieval usage/policies may apply.
+The summary contains recordsChecked, findingCount, flaggedRecordCount, flaggedRecords, flaggedFields, counts by existing code, and static correction hints. flaggedRecordCount counts distinct finding.record values. A duplicate key's first_record is a reference, not an additional flagged record unless it has its own finding. Four findings on records3,4,5 therefore flag three records. Hints guide review; they do not repair data or authorize import.
+The downloadable native JSON, dataset row, profile, codes and input hashes are unchanged. All eight legacy MCP tools and their output schemas are unchanged. The new explanation is returned by a separate tool/schema; it is not inserted into the canonical paid report. This local buyer state is not a signed report or remote identity guarantee.
+
 SETUP
 Python>=3.11; standard library only. Run the unpacked release:
-python3 -I -B /absolute/path/to/drafting_adapter.py
+python3 -I -B /absolute/path/to/workflow_adapter.py
 Or install the package in your normal environment and use csv-contract-preflight-mcp.
 MCP config uses that stdio command. Configure APIFY_TOKEN using YOUR existing eligible Apify buyer account's secret environment/configuration. No key belongs in tool arguments or source files. No new OpenAI account/key is needed. Your MCP client stores configuration; the adapter never persists the token. Without a token, initialization and free tool discovery work, but buyer-profile draft operations and purchases refuse. The included MCPB manifest marks the token as sensitive. No remote hosted endpoint or universal client compatibility is claimed; protocol2025-11-25 is supported.
 
@@ -32,7 +46,7 @@ Local buyer state stores requirements, drafts, approvals, run IDs and retrieved 
 START_UNCERTAIN/HOLD_KNOWN_RUN are held for original-run reconciliation; never blind retry, fresh state or different operationID. Known returned run IDs are recorded before later interpretation. Report dataset and OUTPUT must match exact input hashes and each other. Terminal failures remain failures, not successful reports. No exactly-once guarantee outside the durable local workflow.
 
 RELEASE EVIDENCE
-See release qualification/readback records. Mocked backend tests, stdio tests, actual caller-model evidence, and fresh native validation must be reported separately. Historical0.1.0/private tests do not establish a new public0.2.0 live purchase. No customer/revenue, universal model quality or general security clearance follows from an owner-controlled test.
+See release qualification/readback records. Mocked backend tests, stdio tests, actual caller-model evidence, and fresh native validation must be reported separately. Historical0.1.0/0.2.0/private tests do not establish a new0.3.0 independent buyer purchase. No customer/revenue, universal model quality or general security clearance follows from an owner-controlled test.
 
 Primary interface references:
 https://modelcontextprotocol.io/specification/2025-11-25/server/tools

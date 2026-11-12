@@ -2,8 +2,8 @@
   "manifest_version": "0.3",
   "name": "csv-contract-preflight-mcp",
   "display_name": "CSV Contract Preflight MCP",
-  "version": "0.2.0",
-  "description": "Buyer-owned MCP: agent-assisted contract drafting, explicit acceptance and separately authorized native CSV validation.",
+  "version": "0.3.0",
+  "description": "Buyer-owned MCP: explicit contract presets, agent-assisted drafting, separate report summaries and bounded native validation.",
   "author": {
     "name": "CSV Contract Preflight contributors"
   },
@@ -11,13 +11,13 @@
   "license": "MIT",
   "server": {
     "type": "python",
-    "entry_point": "drafting_adapter.py",
+    "entry_point": "workflow_adapter.py",
     "mcp_config": {
       "command": "python3",
       "args": [
         "-I",
         "-B",
-        "${__dirname}/drafting_adapter.py"
+        "${__dirname}/workflow_adapter.py"
       ],
       "env": {
         "APIFY_TOKEN": "${user_config.apify_token}"
@@ -74,6 +74,18 @@
     {
       "name": "start_validation_from_draft",
       "description": "Separately authorize a paid native validation using an accepted draft."
+    },
+    {
+      "name": "list_contract_templates",
+      "description": "List three free deterministic supported-profile contract presets."
+    },
+    {
+      "name": "get_contract_template",
+      "description": "Inspect exact preset rules, canonical contract, limitations and synthetic examples."
+    },
+    {
+      "name": "get_validation_summary",
+      "description": "Summarize an existing verified report without another purchase or changing the canonical report."
     }
   ],
   "keywords": [
