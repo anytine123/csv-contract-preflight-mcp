@@ -1,0 +1,27 @@
+{
+  "title": "CSV Contract Preflight input",
+  "description": "Paste a UTF-8 CSV and the JSON contract it should follow. The form is prefilled with a synthetic sample.",
+  "type": "object",
+  "schemaVersion": 1,
+  "properties": {
+    "contractJson": {
+      "title": "Contract JSON",
+      "type": "string",
+      "description": "Up to 8,000 UTF-8 bytes. Declare column order, string and integer types, required fields, and an optional literal primary key.",
+      "editor": "textarea",
+      "prefill": "{\n  \"fields\": [\n    {\"name\": \"supplier\", \"type\": \"string\"},\n    {\"name\": \"sku\", \"type\": \"string\"},\n    {\"name\": \"units\", \"type\": \"integer\", \"constraints\": {\"required\": true}}\n  ],\n  \"primaryKey\": [\"supplier\", \"sku\"]\n}"
+    },
+    "csvText": {
+      "title": "CSV text",
+      "type": "string",
+      "description": "Paste up to 20,000 UTF-8 bytes and 500 data records. The first record is the header. Keep IDs in their original spelling.",
+      "editor": "textarea",
+      "prefill": "supplier,sku,units\nnorth,0017,12\nnorth,17,4\nnorth,0017,1.5\n"
+    }
+  },
+  "required": [
+    "contractJson",
+    "csvText"
+  ],
+  "additionalProperties": false
+}

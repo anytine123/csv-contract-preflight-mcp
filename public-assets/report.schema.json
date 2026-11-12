@@ -1,0 +1,57 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "CSV Contract Preflight report",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["profile", "verdict", "schema_sha256", "csv_sha256", "records", "findings"],
+  "properties": {
+    "profile": {"const": "csv-contract-preflight-0.1"},
+    "verdict": {"enum": ["pass", "findings"]},
+    "schema_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "csv_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "records": {"type": "integer", "minimum": 0, "maximum": 500},
+    "findings": {
+      "type": "array",
+      "items": {
+        "oneOf": [
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["record", "code"],
+            "properties": {
+              "record": {"type": "integer", "minimum": 1, "maximum": 500},
+              "code": {"const": "wrong_column_count"}
+            }
+          },
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["record", "field", "code"],
+            "properties": {
+              "record": {"type": "integer", "minimum": 1, "maximum": 500},
+              "field": {"type": "string", "minLength": 1},
+              "code": {"enum": ["missing_value", "invalid_integer"]}
+            }
+          },
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["record", "first_record", "code"],
+            "properties": {
+              "record": {"type": "integer", "minimum": 1, "maximum": 500},
+              "first_record": {"type": "integer", "minimum": 1, "maximum": 500},
+              "code": {"const": "duplicate_primary_key"}
+            }
+          }
+        ]
+      }
+    }
+  },
+  "allOf": [
+    {
+      "if": {"properties": {"verdict": {"const": "pass"}}},
+      "then": {"properties": {"findings": {"maxItems": 0}}},
+      "else": {"properties": {"findings": {"minItems": 1}}}
+    }
+  ]
+}

@@ -1,0 +1,8 @@
+{
+  "profile": "csv-contract-preflight-0.1",
+  "verdict": "pass",
+  "schema_sha256": "1d1decbbe248181a0e178ef7a54d93910f7ced856044ea54b9fc045071a7145c",
+  "csv_sha256": "4e59ce74e63cd72f2a3bbbf32304e9edfac8334d5caca4a15c2fa1edf5ae1b92",
+  "records": 3,
+  "findings": []
+}

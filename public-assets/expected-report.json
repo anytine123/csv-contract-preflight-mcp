@@ -1,0 +1,19 @@
+{
+  "profile": "csv-contract-preflight-0.1",
+  "verdict": "findings",
+  "schema_sha256": "1d1decbbe248181a0e178ef7a54d93910f7ced856044ea54b9fc045071a7145c",
+  "csv_sha256": "cd2331e899d3a74a60ab33c78e4e96747082f94a7071e1623936cb27f7ea1c67",
+  "records": 3,
+  "findings": [
+    {
+      "record": 3,
+      "field": "units",
+      "code": "invalid_integer"
+    },
+    {
+      "record": 3,
+      "first_record": 1,
+      "code": "duplicate_primary_key"
+    }
+  ]
+}

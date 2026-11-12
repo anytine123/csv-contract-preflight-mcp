@@ -1,0 +1,4 @@
+{
+  "contractJson": "{\n  \"fields\": [\n    {\"name\": \"supplier\", \"type\": \"string\"},\n    {\"name\": \"sku\", \"type\": \"string\"},\n    {\"name\": \"units\", \"type\": \"integer\", \"constraints\": {\"required\": true}}\n  ],\n  \"primaryKey\": [\"supplier\", \"sku\"]\n}",
+  "csvText": "supplier,sku,units\nnorth,0017,12\nnorth,17,4\nnorth,0017,1.5\n"
+}
