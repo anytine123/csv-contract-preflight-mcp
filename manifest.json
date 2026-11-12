@@ -2,8 +2,8 @@
   "manifest_version": "0.3",
   "name": "csv-contract-preflight-mcp",
   "display_name": "CSV Contract Preflight MCP",
-  "version": "0.1.0",
-  "description": "Local MCP adapter for automated CSV checks using the buyer's own Apify account; upstream USD0.01 per completed report.",
+  "version": "0.2.0",
+  "description": "Buyer-owned MCP: agent-assisted contract drafting, explicit acceptance and separately authorized native CSV validation.",
   "author": {
     "name": "CSV Contract Preflight contributors"
   },
@@ -11,13 +11,13 @@
   "license": "MIT",
   "server": {
     "type": "python",
-    "entry_point": "adapter.py",
+    "entry_point": "drafting_adapter.py",
     "mcp_config": {
       "command": "python3",
       "args": [
         "-I",
         "-B",
-        "${__dirname}/adapter.py"
+        "${__dirname}/drafting_adapter.py"
       ],
       "env": {
         "APIFY_TOKEN": "${user_config.apify_token}"
@@ -50,6 +50,30 @@
     {
       "name": "get_validation",
       "description": "Retrieve the original saved run and its verified report."
+    },
+    {
+      "name": "prepare_contract_draft",
+      "description": "Prepare instructions for the buyer agent model; no server generation."
+    },
+    {
+      "name": "review_contract_draft",
+      "description": "Validate and preserve a proposal pending review."
+    },
+    {
+      "name": "get_contract_draft",
+      "description": "Retrieve a local draft operation."
+    },
+    {
+      "name": "accept_contract_draft",
+      "description": "Explicitly accept the exact reviewed digest."
+    },
+    {
+      "name": "export_accepted_contract",
+      "description": "Export an accepted canonical contract."
+    },
+    {
+      "name": "start_validation_from_draft",
+      "description": "Separately authorize a paid native validation using an accepted draft."
     }
   ],
   "keywords": [
