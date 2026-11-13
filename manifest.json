@@ -2,8 +2,8 @@
   "manifest_version": "0.3",
   "name": "csv-contract-preflight-mcp",
   "display_name": "CSV Contract Preflight MCP",
-  "version": "0.3.0",
-  "description": "Buyer-owned MCP: explicit contract presets, agent-assisted drafting, separate report summaries and bounded native validation.",
+  "version": "0.4.0",
+  "description": "Buyer-owned MCP: free offer capabilities, explicit contract presets, agent-assisted drafting and report summaries.",
   "author": {
     "name": "CSV Contract Preflight contributors"
   },
@@ -11,13 +11,13 @@
   "license": "MIT",
   "server": {
     "type": "python",
-    "entry_point": "workflow_adapter.py",
+    "entry_point": "offer_adapter.py",
     "mcp_config": {
       "command": "python3",
       "args": [
         "-I",
         "-B",
-        "${__dirname}/workflow_adapter.py"
+        "${__dirname}/offer_adapter.py"
       ],
       "env": {
         "APIFY_TOKEN": "${user_config.apify_token}"
@@ -86,6 +86,10 @@
     {
       "name": "get_validation_summary",
       "description": "Summarize an existing verified report without another purchase or changing the canonical report."
+    },
+    {
+      "name": "get_offer_capabilities",
+      "description": "Inspect the published offer, price reference, declared limits and supported rules without a token, input data or purchase."
     }
   ],
   "keywords": [

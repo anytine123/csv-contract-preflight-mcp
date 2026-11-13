@@ -1,11 +1,18 @@
-CSV CONTRACT PREFLIGHT MCP 0.3.0 — TEMPLATES AND REPORT SUMMARIES
+CSV CONTRACT PREFLIGHT MCP 0.4.0 — FREE OFFER CAPABILITIES
 
 Public product: https://apify.com/satisfied_laptop/csv-contract-preflight
 Source: https://github.com/anytine123/csv-contract-preflight-mcp
 
 This local stdio MCP package helps your agent prepare a contract, validate its proposal, explicitly accept its exact content, and purchase/retrieve a CSV report from the existing Apify Actor. YOUR agent uses its own model. This server does NOT run a hosted model, request an OpenAI key, perform MCP sampling, or expose a creator-funded model backend. prepare_contract_draft returns instructions, not a generated contract. An actual proposal exists only after your agent generates and submits one.
 
-NEW LOCAL WORKFLOW TOOLS
+NEW FREE OFFER TOOL
+- get_offer_capabilities({}): inspect a versioned published reference containing the $0.01 price per completed pass/findings report, native UTF-8 byte/record/column limits, draft limits, supported/unsupported rules, three preset IDs, setup requirements and privacy/recovery boundaries.
+- This tool works without an Apify token, model, network request or buyer-state access. It accepts only empty arguments. Do not send it CSV text, contracts, credentials or purchase flags.
+- The reference identifies its public 0.3.0 source and package digest. It is not fetched live and does not attest current remote pricing, eligibility, payment or earnings. Ordinary native purchase authority and the existing charge cap remain separate.
+- check_input_fit is NOT implemented. This package does not approximate the native CSV parser, count records for eligibility, validate customer input locally, accept drafts or purchase a report through the offer tool.
+- All eleven 0.3 tools and their output schemas remain unchanged. The 0.4 entrypoint adds exactly one tool, making twelve in total.
+
+EXISTING LOCAL WORKFLOW TOOLS
 - list_contract_templates({}): inspect the free catalog.
 - get_contract_template({"templateId":"inventory_v1"}): obtain exact ordered headers, canonical contractJson, requirements, a proposal, limitations and synthetic pass/findings samples. The other IDs are customer_import_v1 and scraper_export_v1.
 - get_validation_summary({"operationId":"your-original-operation-id"}): retrieve the original known run if needed and explain its verified report. Never create a replacement operation for an unknown start.
@@ -21,7 +28,7 @@ The downloadable native JSON, dataset row, profile, codes and input hashes are u
 
 SETUP
 Python>=3.11; standard library only. Run the unpacked release:
-python3 -I -B /absolute/path/to/workflow_adapter.py
+python3 -I -B /absolute/path/to/offer_adapter.py
 Or install the package in your normal environment and use csv-contract-preflight-mcp.
 MCP config uses that stdio command. Configure APIFY_TOKEN using YOUR existing eligible Apify buyer account's secret environment/configuration. No key belongs in tool arguments or source files. No new OpenAI account/key is needed. Your MCP client stores configuration; the adapter never persists the token. Without a token, initialization and free tool discovery work, but buyer-profile draft operations and purchases refuse. The included MCPB manifest marks the token as sensitive. No remote hosted endpoint or universal client compatibility is claimed; protocol2025-11-25 is supported.
 
@@ -45,8 +52,10 @@ PRIVACY AND RECOVERY
 Local buyer state stores requirements, drafts, approvals, run IDs and retrieved reports; it does not store the token. Your chosen model receives requirements/headers during your generation step under its policy, not from this server. Native Apify stores original CSV input and output when you buy a report. No zero-retention claim. Field names are untrusted literal data, never instructions. A profile pass is not source truth, broader schema correctness, data repair or import authorization.
 START_UNCERTAIN/HOLD_KNOWN_RUN are held for original-run reconciliation; never blind retry, fresh state or different operationID. Known returned run IDs are recorded before later interpretation. Report dataset and OUTPUT must match exact input hashes and each other. Terminal failures remain failures, not successful reports. No exactly-once guarantee outside the durable local workflow.
 
-RELEASE EVIDENCE
-See release qualification/readback records. Mocked backend tests, stdio tests, actual caller-model evidence, and fresh native validation must be reported separately. Historical0.1.0/0.2.0/private tests do not establish a new0.3.0 independent buyer purchase. No customer/revenue, universal model quality or general security clearance follows from an owner-controlled test.
+RELEASE EVIDENCE AND COMPATIBILITY
+The new capability behavior passed twelve focused offline checks plus its output-schema/actual-response check. The 0.4 packaging and entrypoint are separate release artifacts. There is no claim that those checks establish Cline/Kilo installation, normal-package live checkout, independent buyer payment, seller earnings or universal client/model compatibility. Existing creator-controlled protected-transport evidence remains scoped to that tested workflow.
+This remains a Linux/Python engineering preview. Supported profile checks do not establish source truth, broader schema correctness, data repair, import permission or a general security clearance.
+The versioned standalone offer and schema ship under public-assets/ in the source/MCPB. A Python package installation also installs those two documents under share/csv-contract-preflight-mcp; the runtime response is embedded public data and does not read them during a call.
 
 Primary interface references:
 https://modelcontextprotocol.io/specification/2025-11-25/server/tools
