@@ -1,0 +1,153 @@
+{
+  "offerSchemaVersion": "1",
+  "offerId": "io.github.anytine123/csv-contract-preflight-mcp",
+  "reference": {
+    "publishedMcpVersion": "0.3.0",
+    "sourceCommit": "64146748e087b12e6cd01273abf3e4c1d1f0935d",
+    "releaseUrl": "https://github.com/anytine123/csv-contract-preflight-mcp/releases/tag/v0.3.0",
+    "packageSha256": "ce0763222133fd8187e822d61d1f831d14816bda4c23add4ee53dd9dcf309df1",
+    "liveRemoteFactsChecked": false
+  },
+  "product": {
+    "name": "CSV Contract Preflight",
+    "url": "https://apify.com/satisfied_laptop/csv-contract-preflight",
+    "reportProfile": "csv-contract-preflight-0.1",
+    "pinnedActorId": "kLghTtrolYoiD2Vnz",
+    "pinnedBuildId": "8hcfHTb1H0ZdSzdTU",
+    "pinnedBuildNumber": "0.1.6"
+  },
+  "pricing": {
+    "currency": "USD",
+    "amount": "0.01",
+    "unit": "completed_report",
+    "billableVerdicts": [
+      "pass",
+      "findings"
+    ],
+    "kind": "published_reference_not_live_quote",
+    "adapterLicense": "MIT",
+    "callerModelCosts": "separate",
+    "retrievalUsage": "ordinary Apify usage and policies may apply"
+  },
+  "nativeLimits": {
+    "csv": {
+      "maximum": 20000,
+      "unit": "utf8_bytes",
+      "inclusive": true
+    },
+    "contractJson": {
+      "maximum": 8000,
+      "unit": "utf8_bytes",
+      "inclusive": true
+    },
+    "dataRecords": {
+      "maximum": 500,
+      "headerExcluded": true
+    },
+    "columns": {
+      "maximum": 64
+    },
+    "memoryMb": 256,
+    "timeoutSeconds": 60
+  },
+  "draftLimits": {
+    "headers": {
+      "minimum": 1,
+      "maximum": 12,
+      "literalUniqueNonempty": true,
+      "maxHeaderUtf8Bytes": 100,
+      "nulAllowed": false
+    },
+    "requirementsUtf8Bytes": 3000,
+    "proposalJsonUtf8Bytes": 16000,
+    "scope": "MCP draft workflow; not a reduction of the native CSV column limit"
+  },
+  "supportedProfile": {
+    "types": [
+      "string",
+      "integer"
+    ],
+    "requiredRule": "explicit boolean in the MCP draft contract",
+    "keys": "literal string or composite string keys",
+    "headers": "literal names in exact declared order",
+    "integerRule": "ASCII digits with optional sign",
+    "identifierRule": "literal strings; leading-zero IDs are not normalized"
+  },
+  "unsupportedRules": [
+    "dates",
+    "decimals",
+    "ranges",
+    "enums",
+    "email_syntax_or_deliverability",
+    "url_or_source_verification",
+    "data_repair",
+    "source_truth",
+    "import_authorization"
+  ],
+  "presets": [
+    "inventory_v1",
+    "customer_import_v1",
+    "scraper_export_v1"
+  ],
+  "requirements": {
+    "platforms": [
+      "linux"
+    ],
+    "pythonMinimum": "3.11",
+    "transport": "stdio",
+    "protocolVersion": "2025-11-25",
+    "hostedMcpEndpoint": null,
+    "hostedModel": false
+  },
+  "access": {
+    "thisCapabilityRequiresToken": false,
+    "publishedFreeTokenlessTools": [
+      "list_contract_templates",
+      "get_contract_template"
+    ],
+    "buyerProfileNeedsOwnEligibleApifyToken": true,
+    "customDraftUsesCallersModel": true,
+    "selectingTemplateAcceptsContract": false,
+    "acceptingContractBuysReport": false,
+    "purchaseNeedsSeparateConfirmation": true
+  },
+  "report": {
+    "downloadableJson": true,
+    "nativeDatasetRowsPerReport": 1,
+    "canonicalKeys": [
+      "profile",
+      "verdict",
+      "schema_sha256",
+      "csv_sha256",
+      "records",
+      "findings"
+    ],
+    "summaryIsSeparate": true
+  },
+  "privacy": {
+    "thisToolAcceptsCustomerInput": false,
+    "thisToolRetainsCustomerInput": false,
+    "adapterPersistsToken": false,
+    "buyerStateRetainsDraftsAndReports": true,
+    "apifyRetainsOriginalPaidRunInputAndOutput": true,
+    "zeroRetentionClaim": false
+  },
+  "recovery": {
+    "unknownStart": "hold_and_reconcile_original_operation",
+    "knownRun": "retrieve_same_run",
+    "blindRetryWithNewOperationIdAllowed": false,
+    "freshStateRetryAllowed": false
+  },
+  "inputFitCheck": {
+    "implemented": false,
+    "reason": "complete native CSV parsing semantics are not established by the public reference",
+    "csvOrContractParsedByThisTool": false,
+    "eligibilityDecisionReturned": false,
+    "validationOrRepairReturned": false
+  },
+  "proofLimits": {
+    "unmodifiedPackageLiveCheckout": "unverified",
+    "independentMcpBuyerPaymentAndEarnings": "unverified",
+    "scope": "published profile and local workflow; not source truth, general security clearance or import permission"
+  }
+}
